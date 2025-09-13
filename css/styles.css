@@ -1,0 +1,240 @@
+/* JM, 09/13/25 */
+
+:root {
+  font-size: clamp(16px, calc(1vw + 0.6em), 1.125em);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-sizing: border-box;
+  line-height: 1.4;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+}
+
+h1 {
+  text-align: center;
+}
+
+/* Double container */
+
+#wrapper {
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: [left] auto [content] 1fr auto [right];
+}
+
+main {
+  display: grid;
+  grid-template-columns: [left] 1fr [content] 92.5vw 1fr [right];
+}
+
+#wrapper > *,
+main > * {
+  grid-column: content;
+}
+
+.full-bleed {
+  grid-column: left / right;
+  width: 100%;
+}
+
+main .full-bleed {
+  padding-left: 3.75vw;
+  padding-right: 3.75vw;
+}
+
+main section,
+main > aside {
+  margin: 2em 0;
+
+  & h2 {
+    margin-top: 0;
+  }
+}
+
+/* Projects */
+
+.project__card {
+  padding: 1.5em;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  border-radius: 1em;
+  border: 0.125em solid #111;
+  background-color: #eee;
+  aspect-ratio: 1 / 1;
+
+  & figcaption {
+    max-width: 40ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+/* Carousel */
+
+/* WIP */
+
+/* @keyframes carousel {
+  0% {
+    transform: translateX(0);
+  }
+
+  25%,
+  33% {
+    transform: translateX(-50vw);
+  }
+
+  50%,
+  66% {
+    transform: translateX(-100vw);
+  }
+
+  75%,
+  100% {
+    transform: translateX(-150vw);
+  }
+} */
+
+.project__carousel {
+  list-style-type: none;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  /* gap: 3.75vw; */
+  /* min-width: calc(300% + 7.5vw); */
+  max-width: 100%;
+  max-height: 70vh;
+  /* overflow-x: scroll; */
+  /* animation: carousel 5s ease-in-out infinite; */
+
+  & .project__card {
+    position: relative;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    max-height: 100%;
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+    /* cursor: pointer; */
+
+    & img {
+      max-width: 100%;
+      border-radius: 0.5em;
+    }
+
+    & figcaption {
+      position: absolute;
+      bottom: 2em;
+      max-height: calc(4.5em * 1.4);
+      min-width: 100%;
+      display: block;
+
+      color: #111d;
+      background-image: linear-gradient(
+        135deg,
+        hsla(210, 100%, 56%, 0.9) 0%,
+        hsla(233, 68%, 56%, 0.9) 100%
+      );
+      padding: 0.5em 1.5em;
+
+      & h3 {
+        margin-top: 0;
+      }
+
+      & p {
+        margin: 0.5em 0;
+      }
+    }
+
+    /* &:nth-of-type(2) {
+      animation-delay: 3s;
+    }
+    &:nth-of-type(3) {
+      animation-delay: 6s;
+    } */
+  }
+}
+
+.feat-project__img {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  object-fit: cover;
+  object-position: 0% 0%;
+}
+
+/* Other Projects */
+
+.other-projects {
+  list-style-type: none;
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+  align-items: stretch;
+  padding: 0;
+  margin: 2em 0;
+
+  & > * {
+    flex: 1;
+  }
+
+  & .project__img {
+    aspect-ratio: 1 / 1;
+    border-radius: 1em;
+
+    &.asp-1-2 {
+      padding: 0 2em;
+    }
+  }
+
+  & .project__card {
+    cursor: pointer;
+    transition: transform 0.25s;
+    &.even {
+      background-color: hsl(202, 60%, 89%);
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    & figcaption {
+      display: none;
+    }
+  }
+
+  & + #other-projects__description {
+    background-color: hsl(202, 60%, 89%);
+    box-shadow: 0 0 0.7em 1em hsl(202, 60%, 89%),
+      0 0 0.5em 1.15em hsl(201, 53%, 45%);
+    border-radius: 1em;
+    margin: 0 auto;
+    text-align: center;
+
+    /* changed with jQuery */
+    display: none;
+  }
+}
+
+/*  */
+
+p,
+figcaption {
+  max-width: 60ch;
+}
