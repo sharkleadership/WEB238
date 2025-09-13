@@ -1,14 +1,88 @@
 <!DOCTYPE html>
-<!-- JM, 08/26/25 -->
+<!-- JM, 09/13/25 -->
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>WEB 238</title>
+        <title>JM</title>
+
+        <link rel="stylesheet" href="./css/styles.css">
+
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+        <script src="./js/script.js" defer></script>
     </head>
     <body>
-        <h1>WEB 238</h1>
-        <p>This is the home page of my project for WEB 238 - Interactive Scripting: jQuery</p>
+        <div id="wrapper">
+            <header>
+                <h1>JM</h1>
+            </header>
+            <main>
+                <section id="projects full-bleed">
+                    <h2>Projects</h2>
+                    <ul class="project__carousel">
+                        <li>
+                            <figure class="project__card">
+                                <img src="./assets/languagebox.png" alt="LanguageBox website." class="feat-project__img">
+                                <figcaption>
+                                    <h3>LanguageBox</h3>
+                                    <!-- FIXME: Truncate text when not focused, then show full when clicked and pulled up? -->
+                                    <p>LanguageBox is a blog/learning resource dedicated to toki pona, the language of good. toki pona is a constructed language created in 2001 by Sonja Lang, known within the community as jan Sonja. This project's goal was to create a WordPress website on a topic of my choosing. The website needed to offer at least four pages and four posts of content. This project was created as my final project in WEB 172 - WordPress I.</p>
+                                </figcaption>
+                            </figure>
+                        </li>
+                        <li hidden>
+                            <figure class="project__card">
+                                <img src="./assets/css-paged-media.png" alt="CSS Paged Media website." class="feat-project__img">
+                                <figcaption>
+                                    <h3>CSS Paged Media</h3>
+                                    <p>CSS Paged Media is a one-page website that details the CSS Paged Media module as well as related features such as page counters and fragmentation. This project was created as my midterm project in WEB 122 - CSS Techniques and Projects.</p>
+                                </figcaption>
+                            </figure>
+                        </li>
+                        <li hidden>
+                            <figure class="project__card">
+                                <img src="./assets/KCDR.png" alt="Kansas City Doberman Rescue website." class="feat-project__img">
+                                <figcaption>
+                                    <h3>Kansas City Doberman Rescue</h3>
+                                    <p>Kansas City Doberman Rescue is a volunteer organization that rescues Dobermans. I redesigned their website to fix some of its challenges, focusing on its disjointed styles, outdated code, and content fatigue. This project was created as my final project in WEB 122 - CSS Techniques and Projects.</p>
+                                </figcaption>
+                            </figure>
+                        </li>
+                    </ul>
+                    <section>
+                        <h3>Other Projects</h3>
+                        <ul class="other-projects">
+                            <li>
+                                <figure class="project__card">
+                                    <img src="./assets/JMdev.jpg" alt="JMdev website." class="project__img">
+                                    <figcaption>
+                                        <abbr title="jeremymeyers.dev">JMdev</abbr> is an ever-evolving website showcasing my work.
+                                    </figcaption>
+                                </figure>
+                            </li>
+                            <li>
+                                <figure class="project__card">
+                                    <img src="./assets/RPSLS.svg" alt="Rock, Paper, Scissors, Lizard, Spock website." class="project__img">
+                                    <figcaption>
+                                        <abbr title="Rock, Paper, Scissors, Lizard, Spock">RPSLS</abbr> is a game created as my final project for JavaScript I.
+                                    </figcaption>
+                                </figure>
+                            </li>
+                            <li>
+                                <figure class="project__card">
+                                    <img src="./assets/Portal.png" alt="Portal: The Movie Figma prototype." class="project__img asp-1-2">
+                                    <figcaption>
+                                        Portal: The Movie is a Figma prototype of a promotional website for a (currently) fictional movie.
+                                    </figcaption>
+                                </figure>
+                            </li>
+                        </ul>
+                        <p id="other-projects__description">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    </section>
+                </section>
+            </main>
+            <footer>
+            </footer>
+        </div>
     </body>
 </html>
