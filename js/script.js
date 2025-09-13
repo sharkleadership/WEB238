@@ -19,12 +19,14 @@ $(document).ready(function() {
     $(".other-projects .project__card:even").addClass('even');
 
     $(".other-projects .project__card").hover(function() {
+        $(this).addClass("gradient-blue");
         const description = $(this).children('figcaption').html();
         $("#other-projects__description").html(description);
 
         $("#other-projects__description").slideDown('fast');
     },
     function() {
+        $(this).removeClass("gradient-blue");
         $("#other-projects__description").slideUp('fast');
     });
 });
