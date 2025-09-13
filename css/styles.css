@@ -127,6 +127,7 @@ main > aside {
   & .project__card {
     position: relative;
     padding: 0;
+    margin: 0 auto;
     border: none;
     background-color: transparent;
     max-height: 100%;
@@ -179,7 +180,7 @@ main > aside {
 
 .other-projects {
   list-style-type: none;
-  width: 70%;
+  max-width: 70%;
   display: flex;
   gap: 2em;
   justify-content: center;
@@ -248,4 +249,10 @@ main > aside {
 p,
 figcaption {
   max-width: 60ch;
+}
+
+@media (min-width: 64em) {
+  .other-projects {
+    max-width: 50%;
+  }
 }
