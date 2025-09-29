@@ -177,6 +177,12 @@ main > aside {
     &:nth-of-type(3) {
       animation-delay: 6s;
     } */
+
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: scale(1.0125) rotate(-0.1deg);
+    }
   }
 }
 
