@@ -1,4 +1,4 @@
-// JM, 09/13/25
+// JM, 09/28/25
 
 $(document).ready(function() {
     // WIP: Featured project carousel
