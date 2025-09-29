@@ -52,6 +52,44 @@ $(document).ready(function() {
 
     // END
 
+    $("<figure id='lightbox'></figure>")
+    .hide()
+    .appendTo('body');
+
+    $(".project__carousel .project__card").click(
+        function() {
+            $('body, #wrapper').css({ "overflow-y": 'hidden'});
+
+            const img = $(this).children('img');
+            const caption = $(this).children('figcaption').children('p');
+
+            $("<img>", { src: img.attr("src") })
+            .appendTo('#lightbox');
+            
+            $("<figcaption class='lightbox__caption'></figcaption>")
+            .hide()
+            .appendTo("#lightbox");
+            
+            $("<p></p>")
+            .text(caption.text())
+            .hide()
+            .appendTo('.lightbox__caption');
+            
+            $("#lightbox").fadeIn();
+            $(".lightbox__caption").fadeIn('slow');
+            $('.lightbox__caption > p').fadeIn('slow');
+            
+            $('#lightbox > img').animate({
+                width: '100%'
+            });
+        }
+    );
+
+    $("#lightbox").click(function() {
+        $(this).fadeOut();
+        $(this).children().remove();
+    });
+
     $(".other-projects .project__card:even").addClass('even');
 
     $(".other-projects .project__card").hover(
