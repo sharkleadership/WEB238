@@ -3,54 +3,89 @@
 $(document).ready(function() {
     // WIP: Featured project carousel
 
-    // const carousel = $('.project__carousel');
-    // const slides = $('.project__carousel .slide');
+    const container = $('.carousel__container');
+    const carousel = $('.project__carousel');
+    const slides = $('.project__carousel .slide');
 
-    // // Create clones at the beginning and end to simulate infinite scroll
-    // const firstEl = slides.get(0);
-    // const firstClone = $(firstEl).clone();
+    // Create clones at the beginning and end to simulate infinite scroll
+    const firstEl = slides.get(0);
+    const firstClone = $(firstEl).clone().addClass('first-clone');
 
-    // const lastEl = slides.get(-1);
-    // const lastClone = $(lastEl).clone();
-    // carousel.append(firstClone);
-    // carousel.prepend(lastClone);
+    const lastEl = slides.get(-1);
+    const lastClone = $(lastEl).clone().addClass('last-clone');
+    carousel.append(firstClone);
+    carousel.prepend(lastClone);
 
-    // let currSlide = 1;
-    // let interval;
-    // const time = 3000;
+    let currSlide = 1;
+    let interval;
+    const time = 5000;
 
-    // const startCarousel = () => {
-    //     interval = setInterval(() => {
-    //         nextSlide();
-    //         console.log(currSlide);
-    //     }, time);
-    // };
+    const getSlides = () => $('.project__carousel .slide');
 
-    // const nextSlide = () => {
-    //     const slides = $('.project__carousel .slide');
-    //     if (currSlide >= slides.length - 1) return;
+    const slideWidth = getSlides().first().width();
+    
+    const animateCarousel = (duration = 400) => {
+        carousel.animate(
+            { myTransform: -slideWidth * currSlide },
+            {
+                easing: 'swing',
+                step: function(now, fx) {
+                    $(this).css({transform: `translateX(${now}px)`});
+                },
+                duration
+            }
+        );
+    }
+    animateCarousel(0);
+
+    const startCarousel = () => {
+        interval = setInterval(() => {
+            nextSlide();
+        }, time);
+    };
+
+    const previousSlide = () => {
+        if (currSlide <= 0) return;
         
-    //     currSlide++;
+        // console.log(currSlide);
+        currSlide--;
 
-    //     const width = slides.first().width();
-    //     carousel.animate({transform: `translateX(${-width * currSlide}px)`}, "swing");
-    // };
+        animateCarousel();
+        carousel.trigger('slideMove', [$(getSlides().get(currSlide))]);
+    };
+    
+    const nextSlide = () => {
+        if (currSlide >= getSlides().length - 1) return;
+        
+        // console.log(currSlide);
+        currSlide++;
 
-    // slides.bind("transitionend", () => {
-    //     // if ()
-    // });
+        animateCarousel();
+        carousel.trigger('slideMove', [$(getSlides().get(currSlide))]);
+    };
 
-    // // Pause on hover
-    // carousel.hover(
-    //     () => {
-    //         clearInterval(interval);
-    //     },
-    //     () => startCarousel()
-    // );
+    carousel.on('slideMove', function(e, slide) {
+        if (slide.hasClass('first-clone')) {
+            currSlide = 1;
+            animateCarousel(0);
+        }
 
-    // startCarousel();
+        if (slide.hasClass('last-clone')) {
+            currSlide = getSlides().length - 2;
+            animateCarousel(0);
+        }
+    });
 
-    // END
+    // Pause on hover
+    container.hover(
+        () => clearInterval(interval),
+        () => startCarousel()
+    );
+
+    $('.controls__previous-slide').click(previousSlide);
+    $('.controls__next-slide').click(nextSlide);
+
+    startCarousel();
 
     $("<figure id='lightbox'></figure>")
     .hide()
@@ -58,6 +93,8 @@ $(document).ready(function() {
 
     $(".project__carousel .project__card").click(
         function() {
+            clearInterval(interval)
+            
             $('body, #wrapper').css({ "overflow-y": 'hidden'});
 
             const img = $(this).children('img');
@@ -88,6 +125,7 @@ $(document).ready(function() {
     $("#lightbox").click(function() {
         $(this).fadeOut();
         $(this).children().remove();
+        startCarousel()
     });
 
     $(".other-projects .project__card:even").addClass('even');
