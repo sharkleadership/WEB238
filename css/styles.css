@@ -143,11 +143,13 @@ main > aside {
     display: grid;
     grid-template-areas: "card";
     align-items: end;
+    overflow: hidden;
 
     & img {
       min-width: 100%;
       border-radius: 0.5em;
       grid-area: card;
+      align-self: start;
     }
 
     & figcaption {
@@ -204,6 +206,11 @@ main > aside {
       -0.05em -0.05em 0.25em hsla(210, 100%, 56%, 0.9);
     color: #222d;
     border-radius: 0.5em;
+  }
+
+  & .progress-bar {
+    fill: transparent;
+    stroke: hsla(233, 68%, 56%, 0.95);
   }
 }
 
