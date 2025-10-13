@@ -206,11 +206,7 @@ main > aside {
       -0.05em -0.05em 0.25em hsla(210, 100%, 56%, 0.9);
     color: #222d;
     border-radius: 0.5em;
-  }
-
-  & .progress-bar {
-    fill: transparent;
-    stroke: hsla(233, 68%, 56%, 0.95);
+    cursor: pointer;
   }
 }
 
