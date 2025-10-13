@@ -1,8 +1,6 @@
-// JM, 09/28/25
+// JM, 10/12/25
 
 $(document).ready(function() {
-    // WIP: Featured project carousel
-
     const container = $('.carousel__container');
     const carousel = $('.project__carousel');
     const slides = $('.project__carousel .slide');
@@ -47,7 +45,6 @@ $(document).ready(function() {
     const previousSlide = () => {
         if (currSlide <= 0) return;
         
-        // console.log(currSlide);
         currSlide--;
 
         animateCarousel();
@@ -57,7 +54,6 @@ $(document).ready(function() {
     const nextSlide = () => {
         if (currSlide >= getSlides().length - 1) return;
         
-        // console.log(currSlide);
         currSlide++;
 
         animateCarousel();
