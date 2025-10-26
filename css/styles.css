@@ -74,7 +74,7 @@ main > aside {
 /* Projects */
 
 .project__card {
-  padding: 1.5em;
+  padding: 0.25rem;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -223,7 +223,6 @@ main > aside {
 
 .other-projects {
   list-style-type: none;
-  max-width: 70%;
   display: flex;
   gap: 2em;
   justify-content: center;
@@ -333,23 +332,23 @@ main > aside {
 
 /* Tabbed content */
 
-#tab {
-  max-width: 80ch;
-  margin: auto auto;
+.tabbed-content {
+  width: clamp(100%, 100%, 80ch);
+  margin: auto auto 2em;
 
   background-color: hsla(210, 100%, 56%, 0.95);
-  border-radius: 1rem 1rem 0.125rem 0.125rem;
+  border-radius: 1rem 1rem 0.25rem 0.25rem;
 
   .tab-menu {
     list-style-type: none;
     display: flex;
-    justify-content: start;
-    padding-left: 0.5rem;
-    margin: 1rem 0 0.5rem;
+    justify-content: space-between;
+    padding: 1.5rem 0.5rem 0;
+    margin: 0 0.5rem 1rem;
     gap: 0.5rem;
 
     & a {
-      padding: 0.5rem 1rem;
+      padding: 1rem 1.5rem;
       border-radius: 1rem 1rem 0 0;
       background-color: hsla(233, 68%, 56%, 0.9);
       color: hsl(202, 60%, 89%);
@@ -377,7 +376,16 @@ main > aside {
         display: block;
       }
 
-      /* transition: all 0.4s; */
+      & ul {
+        line-height: 1.7;
+      }
+
+      &#technologies ul {
+        & li.featured {
+          list-style: "⭐";
+          padding-left: 0.1rem;
+        }
+      }
     }
   }
 }
@@ -398,8 +406,53 @@ footer {
   color: #111d;
 }
 
+@media (min-width: 48em) {
+  .other-projects {
+    max-width: 70%;
+  }
+
+  .tabbed-content {
+    .tab-menu {
+      justify-content: start;
+      padding-top: 1rem;
+      margin: 1rem 0 0.5rem;
+
+      & a {
+        padding: 0.5rem 1rem;
+      }
+    }
+
+    .tab-content {
+      &#skills > ul {
+        column-count: 2;
+      }
+
+      &#technologies ul {
+        column-count: 2;
+
+        & li.featured {
+          list-style: "⭐";
+          padding-left: 0.1rem;
+        }
+      }
+    }
+  }
+}
+
 @media (min-width: 64em) {
+  .project__card {
+    padding: 1.5em;
+  }
+
   .other-projects {
     max-width: 50%;
+  }
+
+  .tabbed-content {
+    .tab-content {
+      &#technologies ul {
+        column-count: 3;
+      }
+    }
   }
 }
