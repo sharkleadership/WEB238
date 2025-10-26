@@ -40,7 +40,13 @@ $(document).ready(function() {
         interval = setInterval(() => {
             nextSlide();
         }, time);
+        $('.carousel__controls .progress-bar').addClass('is-animating');
     };
+
+    const stopCarousel = () => {
+        clearInterval(interval);
+        $('.carousel__controls .progress-bar').removeClass('is-animating');
+    }
 
     const previousSlide = () => {
         if (currSlide <= 0) return;
@@ -73,13 +79,13 @@ $(document).ready(function() {
     });
 
     // Pause on hover
-    container.hover(
-        () => clearInterval(interval),
-        () => startCarousel()
-    );
+    container.on({
+        mouseenter: () => stopCarousel,
+        mouseleave: () => startCarousel
+    });
 
-    $('.controls__previous-slide').click(previousSlide);
-    $('.controls__next-slide').click(nextSlide);
+    $('.controls__previous-slide').on('click', () => previousSlide);
+    $('.controls__next-slide').on('click', () => nextSlide);
 
     startCarousel();
 
@@ -87,7 +93,7 @@ $(document).ready(function() {
     .hide()
     .appendTo('body');
 
-    $(".project__carousel .project__card").click(
+    $(".project__carousel .project__card").on('click',
         function() {
             clearInterval(interval)
             
@@ -118,7 +124,7 @@ $(document).ready(function() {
         }
     );
 
-    $("#lightbox").click(function() {
+    $("#lightbox").on('click', function() {
         $(this).fadeOut();
         $(this).children().remove();
         startCarousel()
@@ -126,17 +132,39 @@ $(document).ready(function() {
 
     $(".other-projects .project__card:even").addClass('even');
 
-    $(".other-projects .project__card").hover(
-        function() {
+    $(".other-projects .project__card").on({
+        mouseenter: function() {
             $(this).addClass("gradient-blue");
             const description = $(this).children('figcaption').html();
             $("#other-projects__description").html(description);
 
             $("#other-projects__description").slideDown('fast');
         },
-        function() {
+        mouseleave: function() {
             $(this).removeClass("gradient-blue");
             $("#other-projects__description").slideUp('fast');
         }
-    );
+    });
+
+    $(".tab-menu a").on({
+        click: function(e) {
+            e.preventDefault();
+            $(".tab-content.current").fadeOut("slow", function() { 
+                $(this).removeClass("current");
+            });
+
+            $(".tab-menu a.current").removeClass('current');
+            $(this).addClass('current');
+
+            $($(this).attr('href')).fadeIn("slow", function() {
+                $(this).addClass("current");
+            });
+        },
+        mouseenter: function() {
+            $(this).addClass('gradient-blue active');
+        },
+        mouseleave: function() {
+            $(this).removeClass('gradient-blue active');
+        }
+    });
 });
