@@ -334,6 +334,7 @@ main > aside {
 
 .tabbed-content {
   width: clamp(100%, 100%, 80ch);
+  max-width: 80ch;
   margin: auto auto 2em;
 
   background-color: hsla(210, 100%, 56%, 0.95);
