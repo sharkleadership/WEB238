@@ -3,7 +3,7 @@
 
 :root {
   font-size: clamp(16px, calc(1vw + 0.6em), 1.125em);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Ubuntu", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   box-sizing: border-box;
   line-height: 1.4;
 }
@@ -28,6 +28,15 @@ img {
 
 h1 {
   text-align: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Bungee Inline", "Times New Roman", Times, serif;
 }
 
 p,
@@ -82,6 +91,44 @@ main > aside {
   /* FIXME: Center it */
 }
 
+/* Footer */
+
+/* Colophon */
+
+.colophon {
+  max-width: calc(100vw - 2.5em);
+  max-height: calc(100vh - 10em);
+
+  padding: 1em;
+  position: fixed;
+  inset: 0;
+}
+
+.colophon__close {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  z-index: 100;
+
+  text-indent: 10rem;
+
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  aspect-ratio: 1;
+  padding: 0.5rem;
+  background-color: transparent;
+  border: none;
+
+  background-repeat: no-repeat;
+  background-image: url("../assets/close-icon.svg");
+
+  /* filter: invert(52%) sepia(3%) saturate(6%) hue-rotate(317deg) brightness(93%)
+    contrast(89%); */
+
+  overflow: hidden;
+}
+
 /* Icon before */
 
 .icon-before::before {
@@ -99,7 +146,7 @@ main > aside {
   background-image: url("../assets/person-icon.svg");
 }
 
-.icon-before.post::before {
+.icon-before.article::before {
   background-image: url("../assets/article-icon.svg");
 }
 
