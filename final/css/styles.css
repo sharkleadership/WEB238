@@ -41,7 +41,7 @@ h6 {
 
 p,
 figcaption {
-  max-width: 80ch;
+  max-width: 70ch;
 }
 
 /* Double container */
@@ -91,6 +91,67 @@ main > aside {
   /* FIXME: Center it */
 }
 
+/* Main */
+
+/* Carousel */
+
+.carousel__container {
+  /* min-height: auto; */
+  max-width: 15em;
+  overflow-x: hidden;
+  /* position: relative; */
+
+  .carousel {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+
+    will-change: transform;
+
+    & .slide {
+      min-width: fit-content;
+
+      & img {
+        aspect-ratio: 1;
+        object-fit: cover;
+        max-width: 15em;
+        border-radius: 0.125em;
+      }
+    }
+
+    transition: transform 0.15s;
+  }
+
+  .carousel__controls {
+    /* position: absolute; */
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    width: 100%;
+
+    & button {
+      font-size: 1.25em;
+      padding: 0;
+      width: 1.5em;
+      height: 1.5em;
+      border: none;
+      background-image: linear-gradient(
+        135deg,
+        hsla(210, 100%, 56%, 0.95) 0%,
+        hsla(233, 68%, 56%, 0.95) 100%
+      );
+      box-shadow: 0.05em 0.05em 0.25em hsla(233, 68%, 56%, 0.9),
+        -0.05em -0.05em 0.25em hsla(210, 100%, 56%, 0.9);
+      color: #222d;
+      border-radius: 0.5em;
+      cursor: pointer;
+    }
+  }
+}
+
 /* Footer */
 
 /* Colophon */
@@ -102,6 +163,12 @@ main > aside {
   padding: 1em;
   position: fixed;
   inset: 0;
+}
+
+.colophon__open,
+.colophon__close,
+button.translate {
+  cursor: pointer;
 }
 
 .colophon__close {
@@ -124,10 +191,20 @@ main > aside {
   background-image: url("../assets/close-icon.svg");
 
   overflow: hidden;
+  cursor: pointer;
 }
 
 .translated {
   display: none;
+}
+
+/* Media */
+
+.media {
+  display: flex;
+  justify-content: space-around;
+  gap: 1em;
+  align-items: center;
 }
 
 /* Icon before */
@@ -164,7 +241,7 @@ main > aside {
 
   main {
     display: grid;
-    grid-template-columns: [left] 1fr [content] 80vw 1fr [right];
+    grid-template-columns: [left] 1fr [content] 70vw 1fr [right];
   }
 
   #wrapper > *,
