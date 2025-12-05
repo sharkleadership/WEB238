@@ -123,10 +123,11 @@ main > aside {
   background-repeat: no-repeat;
   background-image: url("../assets/close-icon.svg");
 
-  /* filter: invert(52%) sepia(3%) saturate(6%) hue-rotate(317deg) brightness(93%)
-    contrast(89%); */
-
   overflow: hidden;
+}
+
+.translated {
+  display: none;
 }
 
 /* Icon before */
@@ -140,6 +141,10 @@ main > aside {
   height: 1.75em;
   aspect-ratio: 1;
   margin-right: 0.25em;
+}
+
+.icon-before.translate::before {
+  background-image: url("../assets/translate-icon.svg");
 }
 
 .icon-before.author::before {
