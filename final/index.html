@@ -1,25 +1,33 @@
 <!DOCTYPE html>
-<!-- JM, 12/04/25 -->
+<!-- JM, 12/06/25 -->
 <!-- Final Project, WEB 238 -->
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Final</title>
+        <title>I am Groot</title>
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="./css/styles.css">
+
         <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
         <script src="js/script.js" defer></script>
     </head>
     <body>
         <div id="wrapper">
             <header>
+                <span><!-- Filler element to center --></span>
                 <img src="./assets/baby-groot.png" alt="Baby Groot icon." class="baby-groot-icon">
-                <nav>
-                    <menu>
+                <nav class="dropdown-menu">
+                    <button class="dropdown-menu__hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        Open Menu
+                    </button>
+                    <menu class="dropdown-menu__menu">
                         <li><a href="#IamGroot" class="icon-before author">I am Groot</a></li>
                         <li><a href="#IAmGroot" class="icon-before article">I am Groot</a></li>
                         <li></li>
@@ -27,9 +35,8 @@
                 </nav>
             </header>
             <main>
-                <section id="IamGroot" class="about-the-author">
+                <aside id="IamGroot" class="about-the-author">
                     <h2 class="icon-before author">I am Groot</h2>
-                    <div class="media">
                         <div class="carousel__container">
                             <ul class="carousel">
                                 <li class="slide"><img src="./assets/groot-author-photo.jpg" alt="Groot author photo."></li>
@@ -46,10 +53,20 @@
                             I am Groot. I am GROOT. I am groot. We are groot. I am Groot.
                             I am groot. We are groot. I am Groot. I am Groot.
                         </p>
-                    </div>
-                </section>
+                </aside>
                 <section id="IAmGroot" class="blog-posts">
                     <h2 class="icon-before article">I am Groot</h2>
+                    <template id="blog-post">
+                        <article>
+                            <h3>I am Groot</h3>
+                            <span class="author icon-before">Groot</span>
+                            <p>
+                                I am Groot. I am groot. I am groot. I AM groot. I Am groot. I am GROOT. I am groot.
+                                I am groot. I am groot. I am groot. I am groot. I AM groot. I AM GROOT.
+                            </p>
+                            <a href="#">I am Groot &rarr;</a>
+                        </article>
+                    </template>
                     <article>
                         <h3>I am Groot</h3>
                         <span class="author icon-before">Groot</span>
@@ -81,6 +98,20 @@
             </main>
             <footer>
                 <button class="colophon__open" title="Open Colophon"><span class="icon-before article">I am Groot</span></button>
+                <img src="./assets/baby-groot.png" alt="Baby Groot icon." class="baby-groot-icon">
+                <nav class="dropdown-menu">
+                    <menu class="dropdown-menu__menu above">
+                        <li><a href="#IamGroot" class="icon-before author">I am Groot</a></li>
+                        <li><a href="#IAmGroot" class="icon-before article">I am Groot</a></li>
+                        <li></li>
+                    </menu>
+                    <button class="dropdown-menu__hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        Open Menu
+                    </button>
+                </nav>
                 <dialog class="colophon">
                     <button class="colophon__close">Close</button>
                     <button class="translate"><span class="icon-before translate">Translate</span></button>

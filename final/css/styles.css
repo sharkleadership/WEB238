@@ -1,4 +1,4 @@
-/* JM, 12/04/25 */
+/* JM, 12/06/25 */
 /* Final Project, WEB 238 */
 
 :root {
@@ -6,6 +6,13 @@
   font-family: "Ubuntu", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   box-sizing: border-box;
   line-height: 1.4;
+
+  --dark-moss-green: hsl(88, 40%, 26%);
+  --dark-olive-green: hsl(85, 33%, 33%);
+  --coffee: hsl(28, 28%, 32%);
+  --artichoke: hsl(40, 15%, 54%);
+  --boy-red: hsl(44, 21%, 34%);
+  --black: hsl(0, 0%, 7%);
 }
 
 *,
@@ -48,6 +55,7 @@ figcaption {
 
 #wrapper {
   max-width: 100%;
+  overflow-y: hidden;
   display: grid;
   grid-template-columns: [left] auto [content] 1fr auto [right];
 }
@@ -83,12 +91,188 @@ main > aside {
 
 /* Header */
 
+header,
+footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  background-color: var(--coffee);
+}
+
 .baby-groot-icon {
   width: 5em;
   height: 5em;
   aspect-ratio: 1;
+  padding: 0.5em;
 
-  /* FIXME: Center it */
+  border-radius: 100%;
+  background-color: linear-gradient(
+    135deg,
+    var(--artichoke) 0%,
+    var(--boy-red) 100%
+  );
+  box-shadow: 0 0 0 1em var(--boy-red), 0 0 0.2em 1.1em var(--artichoke);
+}
+
+header .baby-groot-icon {
+  border-radius: 10% 10% 100% 100%;
+}
+
+footer .baby-groot-icon {
+  border-radius: 100% 100% 10% 10%;
+}
+
+/* Dropdown module */
+
+.dropdown-menu {
+  position: relative;
+}
+
+.dropdown-menu__hamburger {
+  position: relative;
+  z-index: 10;
+
+  --hamburger-size: 3em;
+  width: var(--hamburger-size);
+  height: var(--hamburger-size);
+  aspect-ratio: 1;
+
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: transparent;
+
+  text-indent: 10rem;
+  text-align: center;
+
+  cursor: pointer;
+
+  overflow: hidden;
+}
+
+.bar {
+  display: block;
+  position: relative;
+  left: 0.25em;
+
+  width: calc(var(--hamburger-size) - 0.5em);
+  height: 0.1875rem;
+  margin: calc(var(--hamburger-size) / 4) 0;
+  border-radius: 0.5rem;
+  background-color: var(--black);
+
+  transition: all 0.3s ease;
+}
+
+/* Middle bar */
+.dropdown-menu__hamburger.is-open .bar:nth-child(2) {
+  opacity: 0;
+}
+
+/* Top bar */
+.dropdown-menu__hamburger.is-open .bar:nth-child(1) {
+  transform: translateY(calc((var(--hamburger-size) / 4) - 0.25em))
+    rotate(45deg);
+}
+
+/* Bottom bar */
+.dropdown-menu__hamburger.is-open .bar:nth-child(3) {
+  transform: translateY(calc(-1 * (var(--hamburger-size) / 2.5) - 0.25em))
+    rotate(-45deg);
+}
+
+.dropdown-menu__menu {
+  list-style: none;
+  position: absolute;
+  right: 0;
+  z-index: 1000;
+
+  padding: 0;
+  margin: 0;
+
+  white-space: nowrap;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.15s ease-out;
+}
+
+.dropdown-menu__menu.above {
+  transform: translateY(-9em);
+}
+
+.dropdown-menu__menu.is-open {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Arrow connecting to the hamburger */
+.dropdown-menu__menu.is-open::before {
+  content: "";
+  width: 0;
+  height: 0;
+  display: block;
+  aspect-ratio: 1;
+  border: 0.8em solid;
+
+  border-color: transparent transparent var(--boy-red) transparent;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(-0.25em, -1.6em);
+}
+
+.dropdown-menu__menu.above::before {
+  display: none;
+}
+
+.dropdown-menu__menu.above.is-open::after {
+  content: "";
+  width: 0;
+  height: 0;
+  display: block;
+  aspect-ratio: 1;
+  border: 0.8em solid;
+
+  border-color: var(--boy-red) transparent transparent transparent;
+
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(-0.25em, -1.6em);
+}
+
+.dropdown-menu__menu > li > a {
+  display: block;
+  padding: 0.75em 1.5em;
+  font-size: 1.25em;
+  background-color: var(--boy-red);
+  color: var(--black);
+  text-decoration: none;
+
+  text-align: center;
+}
+
+.dropdown-menu__menu > li:first-of-type > a {
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.25em 0.5em;
+}
+
+.dropdown-menu__menu > li:last-of-type > a {
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+}
+
+.dropdown-menu__menu > li > a:hover {
+  background-color: var(--artichoke);
+  color: #fff;
+}
+
+.dropdown-menu__menu > li > a:active {
+  background-color: var(--coffee);
+  color: #fff;
 }
 
 /* Main */
@@ -140,11 +324,11 @@ main > aside {
       border: none;
       background-image: linear-gradient(
         135deg,
-        hsla(210, 100%, 56%, 0.95) 0%,
-        hsla(233, 68%, 56%, 0.95) 100%
+        var(--artichoke) 0%,
+        var(--boy-red) 100%
       );
-      box-shadow: 0.05em 0.05em 0.25em hsla(233, 68%, 56%, 0.9),
-        -0.05em -0.05em 0.25em hsla(210, 100%, 56%, 0.9);
+      box-shadow: 0.05em 0.05em 0.25em var(--artichoke),
+        -0.05em -0.05em 0.25em var(--boy-red);
       color: #222d;
       border-radius: 0.5em;
       cursor: pointer;
@@ -241,11 +425,16 @@ button.translate {
 
   main {
     display: grid;
-    grid-template-columns: [left] 1fr [content] 70vw 1fr [right];
+    grid-template-columns: [left] 1fr [sidebar] 20vw [content] 50vw 1fr [right];
+    gap: 3em;
   }
 
   #wrapper > *,
   main > * {
     grid-column: content;
+  }
+
+  .about-the-author {
+    grid-column: sidebar;
   }
 }

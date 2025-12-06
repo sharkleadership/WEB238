@@ -1,5 +1,14 @@
-// JM, 12/04/25
+// JM, 12/06/25
 // Final Project, WEB 238
+
+// Hamburger Menu - User Interaction
+
+$('.dropdown-menu__hamburger').each(function() {
+    $(this).on('click', function() {
+        $(this).toggleClass('is-open');
+        $(this).siblings('.dropdown-menu__menu').toggleClass('is-open');
+    });
+});
 
 // Carousel - User Interaction / Other
 const container = $('.carousel__container');
@@ -92,9 +101,7 @@ startCarousel();
 
 // Translate Colophon - User Interaction
 
-$("button.translate").click(function() {
-    $(".untranslated, .translated").toggle();
-});
+$("button.translate").click(() => $(".untranslated, .translated").toggle());
 
 // Colophon - User-initiated Animation
 $(".colophon__open").click(function() {
