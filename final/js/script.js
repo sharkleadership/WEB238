@@ -12,7 +12,90 @@ $('.dropdown-menu__hamburger').each(function() {
     });
 });
 
-// 
+// More posts - User Interaction
+const postTemplate = $('#blog-post');
+const postsSection = $('.blog-posts');
+const morePostsButt = $('.more-posts');
+
+const posts = [
+    {
+        title: 'I am Groot',
+        author: 'Groot',
+        snippet: 'I am Groot. I am groot. I am groot. I AM groot. I Am groot. I am GROOT. I am groot. I am groot. I am groot. I am groot. I am groot. I AM groot. I AM GROOT.'
+    },
+    {
+        title: 'We are Groot',
+        author: 'Groot',
+        snippet: 'We are Groot. I am groot. WE are groot. I am groot. I am groot. I am GROOT. I AM groot. I am groot. I am groot. I am groot. I am groot. we are groot. WE ARE GROOT.'
+    },
+    {
+        title: 'I am GROOT',
+        author: 'Groot',
+        snippet: 'I am GROOT. I am GROOT. I am groot. I AM Groot. I am groot. We are Groot. I am groot. I am groot. We are groot. I am groot. I am groot. I AM GROOT. I am groot.'
+    },
+    {
+        title: 'I am Groot--I am Groot',
+        author: 'Groot',
+        snippet: 'I am Groot. We are Groot. I am Groot. I Am Groot. I AM Groot. I AM GROOT. I AM GROOT. WE ARE GROOT. WE ARE GROOT. I AM GROOT. i am groot.'
+    },
+    {
+        title: 'We are Groot, Groot',
+        author: 'Groot',
+        snippet: 'We are Groot. We are Groot. We ARE Groot. I am Groot. I AM Groot. I AM Groot. i am groot. we are groot. "I am Groot," I am Groot..'
+    },
+    {
+        title: 'I am Groot. We are Groot.',
+        author: 'Groot',
+        snippet: 'I am Groot? I am Groot. We are Groot. WE are Groot. we are groot. I am Groot. I Am Groot. We are Groot. WE are Groot.'
+    },
+    {
+        title: 'I am Groot?',
+        author: 'Groot',
+        snippet: 'I am Groot? I am Groot? We are Groot? I am Groot. I am Groot. I AM Groot. We are GROOT. I Am Groot. We are Groot.'
+    },
+    {
+        title: 'I am Groot. We ARE Groot.',
+        author: 'Groot',
+        snippet: 'We ARE Groot. I am Groot. I am Groot. We Are Groot. I am Groot. We are Groot. I AM Groot. I am Groot. I am Groooooot.'
+    },
+    {
+        title: 'I am Groooot',
+        author: 'Groot',
+        snippet: 'I am Groooot. I am GROOT. I am Groot. We are Groot. We ARE Groot. I am Groot. I AM Groot. We Are GROOOOT.'
+    },
+    {
+        title: 'We are Groot. I am Groot.',
+        author: 'Groot',
+        snippet: 'I am Groot. We are Groot. I am GROOT. We are Groot. I am Groot. I AM Groot. We ARE Groot. I am GROOOT.'
+    }
+];
+let currPost = 0;
+
+function addPosts(num) {
+    if (posts.length === currPost) return;
+
+    for (let i = 0; i < num; i++) {
+        let postEl = postTemplate.contents().clone();
+        const post = posts[currPost];
+        if (!post) {
+            morePostsButt.attr('disabled', true);
+            return;
+        }
+
+        postEl.children('.title').text(post.title);
+        postEl.children('.author').text(post.author);
+        postEl.children('.snippet').text(post.snippet);
+
+        postEl.insertBefore(morePostsButt);
+
+        currPost++;
+    }
+}
+addPosts(3);
+
+morePostsButt.on('click', function() {
+    addPosts(3);
+});
 
 // Carousel - User Interaction / Other
 const container = $('.carousel__container');
@@ -105,16 +188,16 @@ startCarousel();
 
 // Translate Colophon - User Interaction
 
-$("button.translate").click(() => $(".untranslated, .translated").toggle());
+$("button.translate").on('click', () => $(".untranslated, .translated").toggle());
 
 // Colophon - User-initiated Animation
-$(".colophon__open").click(function() {
+$(".colophon__open").on('click', function() {
     $(".colophon").toggle("slow", "swing", function() {
         $(this).attr("open", !$(this).attr("open"));
     });
 });
 
-$(".colophon__close").click(function() {
+$(".colophon__close").on('click', function() {
     $(".colophon").hide("slow", "swing", function() {
         $(this).attr("open", false);
     });

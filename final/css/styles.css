@@ -409,6 +409,10 @@ button.translate {
   background-image: url("../assets/article-icon.svg");
 }
 
+.icon-before.more::before {
+  background-image: url("../assets/more-icon.svg");
+}
+
 @media (min-width: 64em) {
   #wrapper {
     max-width: 100%;
