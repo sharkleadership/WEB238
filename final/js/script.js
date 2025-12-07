@@ -1,7 +1,7 @@
 // JM, 12/06/25
 // Final Project, WEB 238
 
-// Hamburger Menu - User Interaction/User-initiated Animation
+// Hamburger Menu - User-initiated Animation
 
 $('.dropdown-menu__hamburger').each(function() {
     $(this).on('click', function() {
