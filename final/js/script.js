@@ -120,6 +120,11 @@ const getSlides = () => $('.carousel .slide');
 const slideWidth = getSlides().first().width();
 
 const animateCarousel = (duration = 400) => {
+    if (duration === 0) {
+        carousel.css('transform', `translateX(${-slideWidth * currSlide}px)`);
+        return;
+    }
+    
     carousel.animate(
         { myTransform: -slideWidth * currSlide },
         {
@@ -137,13 +142,10 @@ const startCarousel = () => {
     interval = setInterval(() => {
         nextSlide();
     }, time);
-    $('.carousel__controls .progress-bar').addClass('is-animating');
-};
-
-const stopCarousel = () => {
-    clearInterval(interval);
-    $('.carousel__controls .progress-bar').removeClass('is-animating');
 }
+
+const stopCarousel = () => clearInterval(interval);
+
 
 const previousSlide = () => {
     if (currSlide <= 0) return;
@@ -156,7 +158,6 @@ const previousSlide = () => {
 
 const nextSlide = () => {
     if (currSlide >= getSlides().length - 1) return;
-    
     currSlide++;
 
     animateCarousel();
@@ -181,8 +182,16 @@ container.on({
     mouseleave: () => startCarousel
 });
 
-$('.controls__previous-slide').on('click', () => previousSlide);
-$('.controls__next-slide').on('click', () => nextSlide);
+$('.controls__previous-slide').on('click', () => {
+    previousSlide();
+    stopCarousel();
+    startCarousel();
+});
+$('.controls__next-slide').on('click', () => {
+    nextSlide();
+    stopCarousel();
+    startCarousel();
+});
 
 startCarousel();
 

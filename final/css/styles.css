@@ -13,6 +13,7 @@
   --artichoke: hsl(40, 15%, 54%);
   --boy-red: hsl(44, 21%, 34%);
   --black: hsl(0, 0%, 7%);
+  --off-white: hsl(33, 61%, 93%);
 }
 
 *,
@@ -62,7 +63,8 @@ figcaption {
 
 main {
   display: grid;
-  grid-template-columns: [left] 1fr [content] 97.5vw 1fr [right];
+  grid-template-columns: [left] 1fr [content] 95vw 1fr [right];
+  row-gap: 3em;
 }
 
 #wrapper > *,
@@ -87,11 +89,6 @@ main > aside {
   }
 }
 
-main > aside,
-main section:first-of-type {
-  margin-top: 2em;
-}
-
 main section:last-of-type {
   margin-bottom: 2em;
 }
@@ -104,7 +101,14 @@ footer {
   grid-template-columns: 1fr 1fr 1fr;
   justify-items: center;
   align-items: center;
-  background-color: var(--coffee);
+  background-image: linear-gradient(
+    135deg,
+    var(--coffee) 0%,
+    var(--boy-red) 100%
+  );
+
+  position: relative;
+  z-index: 100;
 }
 
 .baby-groot-icon {
@@ -167,7 +171,7 @@ footer .baby-groot-icon {
   height: 0.1875rem;
   margin: calc(var(--hamburger-size) / 4) 0;
   border-radius: 0.5rem;
-  background-color: var(--black);
+  background-color: var(--off-white);
 
   transition: all 0.3s ease;
 }
@@ -241,7 +245,7 @@ footer .baby-groot-icon {
   position: absolute;
   bottom: 0;
   right: 0;
-  transform: translate(-0.25em, -1.6em);
+  transform: translate(-0.25em, 1.6em);
 }
 
 .dropdown-menu__menu > li > a {
@@ -249,10 +253,14 @@ footer .baby-groot-icon {
   padding: 0.75em 1.5em;
   font-size: 1.25em;
   background-color: var(--boy-red);
-  color: var(--black);
+  color: var(--off-white);
   text-decoration: none;
 
   text-align: center;
+
+  &.icon-before::before {
+    background-color: var(--off-white);
+  }
 }
 
 .dropdown-menu__menu > li:first-of-type > a {
@@ -267,15 +275,36 @@ footer .baby-groot-icon {
 
 .dropdown-menu__menu > li > a:hover {
   background-color: var(--artichoke);
-  color: #fff;
+  color: var(--black);
 }
 
 .dropdown-menu__menu > li > a:active {
   background-color: var(--coffee);
-  color: #fff;
+  color: var(--off-white);
 }
 
 /* Main */
+
+/* Sidebar */
+
+.about-the-author {
+  background-image: linear-gradient(
+    135deg,
+    var(--dark-moss-green) 0%,
+    var(--dark-olive-green) 100%
+  );
+  color: var(--off-white);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  grid-column: left/right;
+  padding: 3em 2em;
+
+  & .icon-before::before {
+    background-color: var(--off-white);
+  }
+}
 
 /* Carousel */
 
@@ -330,7 +359,7 @@ footer .baby-groot-icon {
       );
       box-shadow: 0.05em 0.05em 0.25em var(--artichoke),
         -0.05em -0.05em 0.25em var(--boy-red);
-      color: #222d;
+      color: var(--off-white);
       border-radius: 0.5em;
       cursor: pointer;
     }
@@ -352,12 +381,13 @@ footer .baby-groot-icon {
 
 .more-posts,
 .colophon__open,
-.submit-form {
+.submit-form,
+button.translate {
   display: block;
   padding: 0.25em 0.75em;
   font-size: 1em;
   background-color: var(--boy-red);
-  color: var(--black);
+  color: var(--off-white);
   text-decoration: none;
   font-weight: bold;
 
@@ -365,6 +395,10 @@ footer .baby-groot-icon {
   border: 0.25em solid var(--artichoke);
 
   text-align: center;
+
+  & .icon-before::before {
+    background-color: var(--off-white);
+  }
 }
 
 /* Contact form */
@@ -409,9 +443,11 @@ footer .baby-groot-icon {
 .colophon {
   max-width: calc(100vw - 2.5em);
   max-height: calc(100vh - 10em);
+  background-color: var(--off-white);
 
   padding: 1em;
   position: fixed;
+  z-index: 100;
   inset: 0;
 }
 
@@ -425,7 +461,7 @@ button.translate {
   position: absolute;
   top: 1em;
   right: 1em;
-  z-index: 100;
+  z-index: 1000;
 
   text-indent: 10rem;
 
@@ -451,9 +487,11 @@ button.translate {
 /* Icon before */
 
 .icon-before::before {
-  background: url("../assets/person-icon.svg") center/contain no-repeat;
+  --icon: url("../assets/person-icon.svg");
+  mask: var(--icon) center/contain no-repeat;
+  background-color: var(--black);
   display: inline-block;
-  vertical-align: bottom;
+  vertical-align: middle;
   content: " ";
   width: 1.75em;
   height: 1.75em;
@@ -462,35 +500,39 @@ button.translate {
 }
 
 .icon-before.translate::before {
-  background-image: url("../assets/translate-icon.svg");
+  --icon: url("../assets/translate-icon.svg");
 }
 
 .icon-before.author::before {
-  background-image: url("../assets/person-icon.svg");
+  --icon: url("../assets/person-icon.svg");
 }
 
 .icon-before.article::before {
-  background-image: url("../assets/article-icon.svg");
+  --icon: url("../assets/article-icon.svg");
+}
+
+.icon-before.blog::before {
+  --icon: url("../assets/blog-icon.svg");
 }
 
 .icon-before.more::before {
-  background-image: url("../assets/more-icon.svg");
+  --icon: url("../assets/more-icon.svg");
 }
 
 .icon-before.comment::before {
-  background-image: url("../assets/comment-icon.svg");
+  --icon: url("../assets/comment-icon.svg");
 }
 
 .icon-before.name::before {
-  background-image: url("../assets/name-icon.svg");
+  --icon: url("../assets/name-icon.svg");
 }
 
 .icon-before.email::before {
-  background-image: url("../assets/email-icon.svg");
+  --icon: url("../assets/email-icon.svg");
 }
 
 .icon-before.submit::before {
-  background-image: url("../assets/send-icon.svg");
+  --icon: url("../assets/send-icon.svg");
 }
 
 @media (min-width: 64em) {
@@ -502,8 +544,12 @@ button.translate {
 
   main {
     display: grid;
-    grid-template-columns: [left] 1fr [sidebar] 20vw [content] 50vw 1fr [right];
+    grid-template-columns: [left] 1fr [sidebar] 25vw [content] 45vw 1fr [right];
     gap: 3em;
+  }
+
+  main section:first-of-type {
+    margin-top: 2em;
   }
 
   #wrapper > *,
@@ -512,6 +558,7 @@ button.translate {
   }
 
   .about-the-author {
+    grid-row: span 2;
     grid-column: sidebar;
   }
 }
