@@ -6,7 +6,6 @@
 $('.dropdown-menu__hamburger').each(function() {
     $(this).on('click', function() {
         $(this).toggleClass('is-open');
-        // $(this).fadeToggle('slow');
         $(this).siblings('.dropdown-menu__menu').fadeToggle();
         $(this).siblings('.dropdown-menu__menu').toggleClass('is-open');
     });

@@ -317,10 +317,8 @@ footer .baby-groot-icon {
 /* Carousel */
 
 .carousel__container {
-  /* min-height: auto; */
   max-width: 15em;
   overflow-x: hidden;
-  /* position: relative; */
 
   .carousel {
     list-style-type: none;
@@ -345,7 +343,6 @@ footer .baby-groot-icon {
   }
 
   .carousel__controls {
-    /* position: absolute; */
     list-style-type: none;
     padding: 0;
     display: flex;
