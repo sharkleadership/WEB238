@@ -312,6 +312,7 @@ footer .baby-groot-icon {
   & .icon-before::before {
     background-color: var(--off-white);
   }
+  box-shadow: 0 0.125em 1em var(--dark-olive-green);
 }
 
 /* Carousel */
@@ -470,6 +471,7 @@ button.translate,
 
 .contact-form [type="submit"] {
   border: 0.125em solid var(--black);
+  background-color: var(--boy-red);
 }
 
 /* Footer */
@@ -601,5 +603,6 @@ button.translate {
   .about-the-author {
     grid-row: span 2;
     grid-column: left / content;
+    box-shadow: 0.125em 0 1em var(--dark-olive-green);
   }
 }
