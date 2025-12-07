@@ -410,6 +410,8 @@ button.translate,
   & .icon-before::before {
     background-color: var(--off-white);
   }
+
+  cursor: pointer;
 }
 
 .blog-post a {
@@ -430,6 +432,7 @@ button.translate,
   & .icon-before::before {
     background-color: var(--coffee);
   }
+  cursor: not-allowed;
 }
 
 /* Contact form */
@@ -483,6 +486,10 @@ button.translate,
   position: fixed;
   z-index: 100;
   inset: 0;
+}
+
+.colophon a {
+  color: var(--dark-moss-green);
 }
 
 .colophon__open,
@@ -593,6 +600,6 @@ button.translate {
 
   .about-the-author {
     grid-row: span 2;
-    grid-column: sidebar;
+    grid-column: left / content;
   }
 }
