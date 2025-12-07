@@ -1,14 +1,18 @@
 // JM, 12/06/25
 // Final Project, WEB 238
 
-// Hamburger Menu - User Interaction
+// Hamburger Menu - User Interaction/User-initiated Animation
 
 $('.dropdown-menu__hamburger').each(function() {
     $(this).on('click', function() {
         $(this).toggleClass('is-open');
+        // $(this).fadeToggle('slow');
+        $(this).siblings('.dropdown-menu__menu').fadeToggle();
         $(this).siblings('.dropdown-menu__menu').toggleClass('is-open');
     });
 });
+
+// 
 
 // Carousel - User Interaction / Other
 const container = $('.carousel__container');

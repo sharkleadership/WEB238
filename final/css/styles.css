@@ -193,18 +193,11 @@ footer .baby-groot-icon {
 
   white-space: nowrap;
 
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.15s ease-out;
+  display: none;
 }
 
 .dropdown-menu__menu.above {
   transform: translateY(-9em);
-}
-
-.dropdown-menu__menu.is-open {
-  visibility: visible;
-  opacity: 1;
 }
 
 /* Arrow connecting to the hamburger */
