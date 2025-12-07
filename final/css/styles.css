@@ -59,12 +59,15 @@ figcaption {
   overflow-y: hidden;
   display: grid;
   grid-template-columns: [left] auto [content] 1fr auto [right];
+  background: url("../assets/tree-bark.jpg") center/cover no-repeat;
 }
 
 main {
   display: grid;
   grid-template-columns: [left] 1fr [content] 95vw 1fr [right];
   row-gap: 3em;
+  background-color: hsla(from var(--artichoke) h s l / 0.4);
+  backdrop-filter: blur(25px);
 }
 
 #wrapper > *,
@@ -256,6 +259,9 @@ footer .baby-groot-icon {
   color: var(--off-white);
   text-decoration: none;
 
+  border-left: 0.125em solid var(--black);
+  border-right: 0.125em solid var(--black);
+
   text-align: center;
 
   &.icon-before::before {
@@ -266,11 +272,13 @@ footer .baby-groot-icon {
 .dropdown-menu__menu > li:first-of-type > a {
   border-top-left-radius: 0.5em;
   border-top-right-radius: 0.25em 0.5em;
+  border-top: 0.125em solid var(--black);
 }
 
 .dropdown-menu__menu > li:last-of-type > a {
   border-bottom-left-radius: 0.5em;
   border-bottom-right-radius: 0.5em;
+  border-bottom: 0.125em solid var(--black);
 }
 
 .dropdown-menu__menu > li > a:hover {
@@ -370,19 +378,25 @@ footer .baby-groot-icon {
 
 .blog-post {
   margin: 1em auto;
-}
 
-.blog-post a {
-  color: var(--dark-olive-green);
-  text-underline-offset: 0.2em;
-  padding-bottom: 0.25em;
-  border-bottom: var(--dark-olive-green) 2px solid;
+  &:last-of-type {
+    margin-bottom: 2em;
+  }
+
+  & .title {
+    margin-bottom: 0;
+  }
+
+  & .snippet::after {
+    content: " …";
+  }
 }
 
 .more-posts,
 .colophon__open,
 .submit-form,
-button.translate {
+button.translate,
+.blog-post a {
   display: block;
   padding: 0.25em 0.75em;
   font-size: 1em;
@@ -392,12 +406,32 @@ button.translate {
   font-weight: bold;
 
   border-radius: 0.25em;
-  border: 0.25em solid var(--artichoke);
+  border: 0.125em solid var(--black);
 
   text-align: center;
 
   & .icon-before::before {
     background-color: var(--off-white);
+  }
+}
+
+.blog-post a {
+  display: inline-block;
+  background-color: var(--dark-olive-green);
+  border-color: var(--dark-moss-green);
+}
+
+.more-posts:disabled {
+  background-image: linear-gradient(
+    150deg,
+    var(--artichoke) 0%,
+    var(--boy-red) 100%
+  );
+  color: var(--coffee);
+  border-color: var(--boy-red);
+
+  & .icon-before::before {
+    background-color: var(--coffee);
   }
 }
 
@@ -419,6 +453,7 @@ button.translate {
   border: 0.0575em solid var(--black);
   padding: 0.5em 2em 0.5em 1em;
   grid-column: input;
+  background-color: var(--off-white);
 }
 
 .contact-form textarea {
@@ -426,6 +461,7 @@ button.translate {
   border: 0.0575em solid var(--black);
   padding: 0.5em 1em;
   aspect-ratio: 3 / 1;
+  background-color: var(--off-white);
 }
 
 .contact-form *::before {
@@ -444,6 +480,7 @@ button.translate {
   max-width: calc(100vw - 2.5em);
   max-height: calc(100vh - 10em);
   background-color: var(--off-white);
+  border-radius: 0.5em;
 
   padding: 1em;
   position: fixed;
